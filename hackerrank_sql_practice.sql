@@ -1,2 +1,8 @@
-SELECT ROUND((SQRT((POWER((MAX(LAT_N)-MIN(LAT_N)),2)) + (POWER((MAX(LONG_W)-MIN(LONG_W)),2)))),4)
-FROM STATION;
+SET @row_index = -1;
+
+SELECT ROUND(LAT_N,4)
+FROM( SELECT @row_index:= @row_index +1 AS idx,LAT_N
+FROM STATION
+ORDER BY LAT_N ASC ) AS CALC
+WHERE idx = FLOOR(@row_index/2);
+
