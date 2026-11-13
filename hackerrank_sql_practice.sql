@@ -1,3 +1,3 @@
 SELECT name
 FROM Employee
-ORDER BY name ASC;
+WHERE salary > 2000 AND months < 10;
