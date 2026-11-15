@@ -1,9 +1,10 @@
-SELECT 
-CASE
-    WHEN A=B AND B=C AND C=A THEN "Equilateral"
-    WHEN A=B AND A != C AND A+B>C OR B = C AND A!= B AND B+C>C  OR A = C AND B!= C AND A+C>B THEN "Isosceles"
-    WHEN A!=B AND B!=C AND C!= A AND A+B>C THEN "Scalene"
-    ELSE "Not A Triangle"
-    
-END
-FROM TRIANGLES;
+SELECT CONCAT(Name,'(', SUBSTR(Occupation, 1,1),')')
+FROM OCCUPATIONS
+WHERE Occupation IN ("Actor","Doctor","Professor","Singer")
+ORDER BY Name ASC;
+
+SELECT CONCAT("There are a total of " ,count(Name)," ", LOWER(Occupation),"s.")
+FROM OCCUPATIONS
+WHERE Occupation IN ("Actor","Doctor","Professor","Singer")
+GROUP BY Occupation
+ORDER BY count(Name) ASC,Occupation ASC;
